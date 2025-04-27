@@ -1,0 +1,11 @@
+@use 'variables' as vars;
+@use 'mixins' as mix;
+
+.theme-light {
+  @include mix.themed(vars.$colors-palette, 'primary');
+  @include mix.themed(vars.$colors-palette, 'secondary');
+  @include mix.themed(vars.$colors-palette, 'tertiary');
+  @include mix.themed(vars.$colors-palette, 'accent');
+  @include mix.themed(vars.$colors-palette, 'text');
+  @include mix.themed(vars.$colors-palette, 'background');
+}

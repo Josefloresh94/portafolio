@@ -1,0 +1,12 @@
+<button
+  class="theme-toggle"
+  (click)="toggleTheme()"
+  [attr.aria-label]="'Toggle ' + (isDarkMode() ? 'light' : 'dark') + ' theme'">
+  <span class="toggle-icon">
+    @if (isDarkMode()) {
+      <fa-icon [icon]="faMoon" class="moon-icon"></fa-icon>
+    } @else {
+      <fa-icon [icon]="faSun" class="sun-icon"></fa-icon>
+    }
+  </span>
+</button>

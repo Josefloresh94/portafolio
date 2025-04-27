@@ -1,0 +1,12 @@
+@use 'variables' as vars;
+@use "sass:map";
+
+@mixin themed($palette, $color) {
+  @each $theme-name, $theme in vars.$themes {
+    $theme-color: map.get($theme, $color);
+    $palette-color: map.get($palette, $theme-color);
+    @if $palette-color != null {
+      --#{$theme-name}-#{$color}: #{$palette-color};
+    }
+  }
+}

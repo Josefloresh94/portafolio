@@ -1,0 +1,48 @@
+.theme-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+  }
+
+  .toggle-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    fa-icon {
+      width: 20px;
+      height: 20px;
+      transition: transform 0.3s ease, color 0.3s ease;
+
+      &:hover {
+        transform: rotate(12deg);
+      }
+    }
+  }
+
+  .sun-icon  {
+    color: #FFD700; // Amarillo dorado para el sol
+  }
+
+  .moon-icon {
+    color: #FFFFFF; // Blanco para la luna
+  }
+
+  // Styles for dark theme
+  .theme-dark & {
+    color: var(--dark-text);
+
+    &:hover {
+      background-color: rgba(255, 255, 255, 0.1);
+    }
+  }
+}

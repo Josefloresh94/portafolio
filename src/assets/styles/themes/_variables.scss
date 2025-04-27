@@ -1,0 +1,34 @@
+$colors-palette: (
+  "light-primary": #D4AF37,
+  "light-background": #ffffff,
+  "light-text": #0A0A0A,
+  "light-secondary": #E5C76B,
+  "light-tertiary": #F1D79C,
+  "light-accent": #c0c0c0,
+
+  "dark-primary": #1E3A8A,
+  "dark-background": #121212,
+  "dark-text": #F9FAFB,
+  "dark-secondary": #3B82F6,
+  "dark-tertiary": #7596C5,
+  "dark-accent": #828282,
+);
+
+$themes: (
+  "light": (
+    "primary": "light-primary",
+    "secondary": "light-secondary",
+    "tertiary": "light-tertiary",
+    "accent": "light-accent",
+    "text": "light-text",
+    "background": "light-background"
+  ),
+  "dark": (
+    "primary": "dark-primary",
+    "secondary": "dark-secondary",
+    "tertiary": "dark-tertiary",
+    "accent": "dark-accent",
+    "text": "dark-text",
+    "background": "dark-background"
+  ),
+);
