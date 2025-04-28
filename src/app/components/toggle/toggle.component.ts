@@ -1,4 +1,11 @@
-import { ChangeDetectionStrategy, Component, effect, inject, signal } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  effect,
+  inject,
+  OnInit,
+  signal,
+} from '@angular/core';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faSun, faMoon } from '@fortawesome/free-solid-svg-icons';
 import { ThemeService } from '../../services/theme.service';
@@ -8,9 +15,9 @@ import { ThemeService } from '../../services/theme.service';
   imports: [FontAwesomeModule],
   templateUrl: './toggle.component.html',
   styleUrl: './toggle.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ToggleComponent {
+export class ToggleComponent implements OnInit {
   private themeService = inject(ThemeService);
 
   isDarkMode = signal<boolean>(false);

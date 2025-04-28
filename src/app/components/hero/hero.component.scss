@@ -1,0 +1,184 @@
+.Hero {
+  overflow: hidden;
+  position: relative;
+  padding: 6rem 0 4rem;
+  text-align: center;
+
+  .HeroContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1.5rem;
+    padding: 0 1rem;
+  }
+
+  .HeroLeft {
+    flex: 1;
+    text-align: center;
+    margin-top: 0.75rem;
+
+    h1{
+      font-size: 1.875rem;
+      font-weight: 700;
+      letter-spacing: -0.05em;
+
+    }
+
+    .PrimaryText {
+      color: var(--text);
+    }
+
+
+    .SecondaryText {
+      display: block;
+      color: var(--primary);
+      margin-top: 0.25rem;
+    }
+
+    p{
+      font-size: 1.125rem;
+      color: var(--text);
+      max-width: 600px;
+      margin: 1rem auto;
+    }
+  }
+
+  .ButtonsContainer {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    justify-content: center;
+
+    a{
+      text-decoration: none;
+    }
+
+    button{
+      padding: 0.75rem 2rem;
+      border-radius: 0.5rem;
+      font-size: 1.125rem;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .Button-Proyectos{
+      background-color: var(--primary);
+      color: #fff;
+      transition: 0.2s ease-in-out;
+      border: solid 1px var(--primary);
+      &:hover{
+        background-color: rgba(var(--secondary), 0.8);
+      }
+    }
+
+    .Button-Contacto{
+      background-color: transparent;
+      color: var(--text);
+      transition: 0.2s ease-in-out;
+      border: solid 1px var(--primary);
+    }
+  }
+
+  .HeroRight{
+    position: relative;
+    width: 220px;
+    height: 220px;
+    margin-top: 1.5rem;
+  }
+
+  @media (min-width: 640px){
+    .Hero {
+      padding: 7rem 0 5rem;
+    }
+
+    .HeroLeft{
+      margin-top: 1rem;
+
+      h1 {
+        font-size: 2.25rem;
+      }
+
+      p{
+        font-size: 1.25rem;
+      }
+    }
+
+    .ButtonsContainer{
+      gap: 1rem;
+    }
+
+    .HeroRight{
+      width: 280px;
+      height: 280px;
+    }
+
+    .BackgroundGlow {
+      position: absolute;
+      inset: 0;
+      border-radius: 9999px;
+      background: linear-gradient(to right, var(--tertiary), var(--accent));
+      animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+    }
+
+    .ImageContainer{
+      position: absolute;
+      inset: 6px;
+      border-radius: 9999px;
+      overflow: hidden;
+      background-color: #ffffff;
+
+      .dark & {
+        background-color: #1e293b;
+      }
+
+      img {
+        object-fit: cover;
+        width: 100%;
+        height: 100%;
+        // priority es un atributo específico para frameworks como Next.js
+      }
+    }
+  }
+
+  @media (min-width: 768px) {
+    .HeroContainer {
+      padding: 0 1.5rem;
+      flex-direction: row;
+      gap: 2rem;
+    }
+
+    .HeroLeft {
+      text-align: left;
+
+      h1{
+        font-size: 3rem;
+      }
+    }
+
+    .ButtonsContainer{
+      gap: 1rem;
+      justify-content: flex-start;
+    }
+
+    .HeroRight{
+      width: 320px;
+      height: 320px;
+      margin-top: 0;
+    }
+  }
+
+  @media (min-width: 1024px){
+    .HeroLeft {
+
+      h1{
+        font-size: 3.75rem;
+      }
+    }
+
+    .HeroRight{
+      width: 380px;
+      height: 380px;
+    }
+  }
+}

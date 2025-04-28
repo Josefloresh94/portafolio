@@ -21,7 +21,9 @@
     fa-icon {
       width: 20px;
       height: 20px;
-      transition: transform 0.3s ease, color 0.3s ease;
+      transition:
+        transform 0.3s ease,
+        color 0.3s ease;
 
       &:hover {
         transform: rotate(12deg);
@@ -29,12 +31,12 @@
     }
   }
 
-  .sun-icon  {
-    color: #FFD700; // Amarillo dorado para el sol
+  .sun-icon {
+    color: #ffd700; // Amarillo dorado para el sol
   }
 
   .moon-icon {
-    color: #FFFFFF; // Blanco para la luna
+    color: #ffffff; // Blanco para la luna
   }
 
   // Styles for dark theme
