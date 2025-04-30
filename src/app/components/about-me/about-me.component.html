@@ -1,1 +1,16 @@
-<p>about-me works!</p>
+<section class="AboutMeContainer">
+  <h2 class="Title">Sobre mí</h2>
+  <p class="Subtitle">Conoce más sobre mi trayectoria, pasión por el desarrollo y habilidades técnicas</p>
+
+  <div class="bento-grid">
+    @for (card of cards; track $index) {
+      <app-bento-card
+        [title]="card.title"
+        [icon]="card.icon"
+        [frontContent]="card.frontContent"
+        [backContent]="card.backContent"
+        [technologies]="card.technologies"
+      />
+    }
+  </div>
+</section>

@@ -66,6 +66,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
+      cursor: pointer;
     }
   }
 
@@ -74,13 +75,15 @@
     width: 100%;
     overflow: hidden;
     max-height: 0;
-    transition: max-height 0.3s ease-out;
-    background-color: var(--secondary);
+    transition: max-height 0.3s ease-out, opacity 0.3s ease-out;
+    background-color: var(--background);
+    opacity: 0;
 
     &.active {
       display: block;
       max-height: 300px;
-      transition: max-height 0.5s ease-in;
+      opacity: 1;
+      transition: max-height 0.5s ease-in, opacity 0.5s ease-in;
     }
   }
 

@@ -1,0 +1,206 @@
+.bento-card {
+  background: linear-gradient(180deg,var(--primary) 0%, var(--background) 100%);
+  border-radius: 12px;
+  height: 100%;
+  min-height: 220px;
+  perspective: 1000px;
+  position: relative;
+  cursor: pointer;
+  transform-style: preserve-3d;
+  transition: transform 0.8s;
+
+  &.flipped {
+    transform: rotateY(180deg);
+  }
+
+  .card-face {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border-radius: 12px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 1.5rem;
+  }
+
+  .card-front {
+    color: var(--text);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+
+  .card-back {
+    background: linear-gradient(180deg,var(--primary) 0%, var(--background) 100%);
+    color: var(--text);
+    transform: rotateY(180deg);
+  }
+
+  .card-icon {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: rgba(59, 130, 246, 0.1);
+  }
+
+  .icon-database::before { content: '🗄️'; }
+  .icon-code-bracket::before { content: '🖥️'; }
+  .icon-server::before { content: '⌨️'; }
+  .icon-cloud::before { content: '☁️'; }
+  .icon-puzzle-piece::before { content: '🧩'; }
+  .icon-heart::before { content: '❤️'; }
+  .icon-academic-cap::before { content: '🎓'; }
+
+  .card-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+  }
+
+  .card-text {
+    font-size: 0.9rem;
+    color: var(--text);
+    text-align: center;
+  }
+
+  .card-content {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .tech-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.75rem;
+    margin-top: 0.75rem;
+    width: 100%;
+  }
+
+  .tech-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.25rem;
+  }
+
+  .tech-icon {
+    width: 32px;
+    height: 32px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 4px;
+    padding: 4px;
+  }
+
+  .icon-placeholder {
+    width: 24px;
+    height: 24px;
+    background-color: #ffffff;
+    border-radius: 4px;
+  }
+
+  .tech-name {
+    font-size: 0.7rem;
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100%;
+  }
+
+  @media (min-width: 768px) {
+    min-height: 250px;
+
+    .card-icon {
+      width: 60px;
+      height: 60px;
+      font-size: 3rem;
+    }
+
+    .card-title {
+      font-size: 1.5rem;
+    }
+
+    .card-text {
+      font-size: 1rem;
+    }
+
+    .tech-grid {
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0.75rem;
+    }
+
+    .tech-icon {
+      width: 36px;
+      height: 36px;
+    }
+
+    .tech-name {
+      font-size: 0.75rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    min-height: 300px;
+    min-width: 250px;
+
+    .tech-grid {
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0.75rem;
+    }
+
+    .tech-icon {
+      width: 40px;
+      height: 40px;
+    }
+
+    .icon-placeholder {
+      width: 30px;
+      height: 30px;
+    }
+
+    .tech-name {
+      font-size: 0.8rem;
+    }
+  }
+
+  @media (min-width: 1440px) {
+    min-height: 300px;
+
+    .card-content {
+      padding: 0.5rem;
+    }
+
+    .tech-grid {
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+
+    .tech-icon {
+      width: 44px;
+      height: 44px;
+    }
+
+    .icon-placeholder {
+      width: 34px;
+      height: 34px;
+    }
+  }
+}
+

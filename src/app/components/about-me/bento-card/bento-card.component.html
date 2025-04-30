@@ -1,0 +1,35 @@
+<div
+  class="bento-card"
+  (click)="toggleFlip()"
+  (keydown.enter)="toggleFlip()"
+  tabindex="0"
+  [class.flipped]="isFlipped">
+
+  <div class="card-face card-front" [@flipCard]="isFlipped ? 'back' : 'front'">
+    <div class="card-content">
+      <span class="card-icon" [ngClass]="'icon-' + icon"></span>
+      <h3 class="card-title">{{ title }}</h3>
+      <p class="card-text">{{ frontContent }}</p>
+    </div>
+  </div>
+
+  <div class="card-face card-back" [@flipCard]="isFlipped ? 'back' : 'front'">
+    <div class="card-content">
+      <h3 class="card-title">{{ title }}</h3>
+      <p class="card-text">{{ backContent }}</p>
+
+      @if (technologies && technologies.length > 0) {
+        <div class="tech-grid">
+          @for (tech of technologies; track $index) {
+            <div class="tech-item">
+              <div class="tech-icon">
+                <div class="icon-placeholder"></div>
+              </div>
+              <span class="tech-name">{{ tech.name }}</span>
+            </div>
+          }
+        </div>
+      }
+    </div>
+  </div>
+</div>
