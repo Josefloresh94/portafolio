@@ -15,53 +15,49 @@
   </div>
 
   <div class="ProjectsGrid">
-    @if (loading()) {
-      <p>Cargando proyectos...</p>
-    } @else {
-      @for (project of filteredProjects(); track project.id) {
-        <div class="project-card">
-          <div class="project-image">
-            <!-- <img
-                [src]="project.image || '/placeholder.svg'"
-                [alt]="'Captura de pantalla del proyecto ' + project.title"
-                *ngIf="project.image; else placeholder"
-              /> -->
-            <ng-template #placeholder>
-              <span class="placeholder-icon">🖼️</span>
-            </ng-template>
+    @for (project of filteredProjects(); track project.id) {
+      <div class="project-card">
+        <div class="project-image">
+          <!-- <img
+              [src]="project.image || '/placeholder.svg'"
+              [alt]="'Captura de pantalla del proyecto ' + project.title"
+              *ngIf="project.image; else placeholder"
+            /> -->
+          <ng-template #placeholder>
+            <span class="placeholder-icon">🖼️</span>
+          </ng-template>
+        </div>
+        <div class="project-content">
+          <div class="project-header">
+            <span class="project-title">{{ project.title }}</span>
+            <span
+              class="project-level"
+              [ngClass]="project.level.toLowerCase()"
+              >{{ project.level }}</span
+            >
           </div>
-          <div class="project-content">
-            <div class="project-header">
-              <span class="project-title">{{ project.title }}</span>
-              <span
-                class="project-level"
-                [ngClass]="project.level.toLowerCase()"
-                >{{ project.level }}</span
-              >
-            </div>
-            <div class="project-description">{{ project.description }}</div>
-            <div class="project-techs">
-              @for (tech of project.technologies; track $index) {
-                <span class="project-tech">{{ tech }}</span>
-              }
-            </div>
-            <div class="project-links">
-              <a
-                [href]="project.repoUrl"
-                target="_blank"
-                class="project-link repo">
-                <fa-icon [icon]="faGithub"></fa-icon> Repositorio
-              </a>
-              <a
-                [href]="project.demoUrl"
-                target="_blank"
-                class="project-link demo">
-                <fa-icon [icon]="faExternalLink"></fa-icon> Demo
-              </a>
-            </div>
+          <div class="project-description">{{ project.description }}</div>
+          <div class="project-techs">
+            @for (tech of project.technologies; track $index) {
+              <span class="project-tech">{{ tech }}</span>
+            }
+          </div>
+          <div class="project-links">
+            <a
+              [href]="project.repoUrl"
+              target="_blank"
+              class="project-link repo">
+              <fa-icon [icon]="faGithub"></fa-icon> Repositorio
+            </a>
+            <a
+              [href]="project.demoUrl"
+              target="_blank"
+              class="project-link demo">
+              <fa-icon [icon]="faExternalLink"></fa-icon> Demo
+            </a>
           </div>
         </div>
-      }
+      </div>
     }
   </div>
 </section>

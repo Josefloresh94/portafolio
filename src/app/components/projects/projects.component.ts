@@ -5,12 +5,10 @@ import {
   ChangeDetectionStrategy,
   Component,
   computed,
-  inject,
   signal,
 } from '@angular/core';
 import { Project } from '../../models/project';
 import { CommonModule } from '@angular/common';
-import { HttpClient } from '@angular/common/http';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @Component({
@@ -27,24 +25,9 @@ export class ProjectsComponent {
     'Todos'
   );
   projects = signal(PROJECTS);
-  loading = signal(true);
 
   faGithub = faGithub;
   faExternalLink = faExternalLink;
-
-  private http = inject(HttpClient);
-
-  constructor() {
-    this.http.get<Project[]>('assets/projects.json').subscribe({
-      next: data => {
-        this.projects.set(data);
-        this.loading.set(false);
-      },
-      error: () => {
-        this.loading.set(false);
-      },
-    });
-  }
 
   filteredProjects = computed(() => {
     const filter = this.activeFilter();

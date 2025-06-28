@@ -10,7 +10,7 @@ import {
   withEventReplay,
   withIncrementalHydration,
 } from '@angular/platform-browser';
-import { provideHttpClient } from '@angular/common/http';
+// import { provideHttpClient } from '@angular/common/http';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -18,6 +18,6 @@ export const appConfig: ApplicationConfig = {
     provideRouter(routes),
     provideAnimations(),
     provideClientHydration(withIncrementalHydration(), withEventReplay()),
-    provideHttpClient(),
+    // provideHttpClient(),
   ],
 };
