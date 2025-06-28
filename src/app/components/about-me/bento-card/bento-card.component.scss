@@ -1,5 +1,9 @@
 .bento-card {
-  background: linear-gradient(180deg,var(--primary) 0%, var(--background) 100%);
+  background: linear-gradient(
+    180deg,
+    var(--primary) 0%,
+    var(--background) 100%
+  );
   border-radius: 12px;
   height: 100%;
   min-height: 220px;
@@ -37,7 +41,11 @@
   }
 
   .card-back {
-    background: linear-gradient(180deg,var(--primary) 0%, var(--background) 100%);
+    background: linear-gradient(
+      180deg,
+      var(--primary) 0%,
+      var(--background) 100%
+    );
     color: var(--text);
     transform: rotateY(180deg);
   }
@@ -53,14 +61,6 @@
     border-radius: 50%;
     background-color: rgba(59, 130, 246, 0.1);
   }
-
-  .icon-database::before { content: '🗄️'; }
-  .icon-code-bracket::before { content: '🖥️'; }
-  .icon-server::before { content: '⌨️'; }
-  .icon-cloud::before { content: '☁️'; }
-  .icon-puzzle-piece::before { content: '🧩'; }
-  .icon-heart::before { content: '❤️'; }
-  .icon-academic-cap::before { content: '🎓'; }
 
   .card-title {
     font-size: 1.25rem;
@@ -107,11 +107,19 @@
     padding: 4px;
   }
 
+  .icon {
+    font-size: 1.25rem;
+    color: var(--text);
+  }
+
   .icon-placeholder {
     width: 24px;
     height: 24px;
-    background-color: #ffffff;
+    background: var(--background);
     border-radius: 4px;
+    justify-content: center;
+    align-items: center;
+    display: flex;
   }
 
   .tech-name {
@@ -129,7 +137,7 @@
     .card-icon {
       width: 60px;
       height: 60px;
-      font-size: 3rem;
+      font-size: 2rem;
     }
 
     .card-title {
@@ -203,4 +211,3 @@
     }
   }
 }
-

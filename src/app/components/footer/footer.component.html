@@ -1,1 +1,92 @@
-<p>footer works!</p>
+<footer class="footer">
+  <div class="container">
+    <div class="main-grid">
+      <div>
+        <h3 class="title">Mi Portafolio</h3>
+        <p class="description">
+          Desarrollador Fullstack especializado en Angular y .NET, creando
+          soluciones web modernas y escalables.
+        </p>
+      </div>
+
+      <div class="links-grid">
+        <div>
+          <h3 class="links-title">Enlaces</h3>
+          <ul class="links-list">
+            <li>
+              <a
+                href="#hero"
+                class="link"
+                aria-label="Ir a la sección de inicio"
+                >Inicio</a
+              >
+            </li>
+            <li>
+              <a
+                href="#experience"
+                class="link"
+                aria-label="Ir a la sección de experiencia"
+                >Experiencia</a
+              >
+            </li>
+            <li>
+              <a
+                href="#projects"
+                class="link"
+                aria-label="Ir a la sección de proyectos"
+                >Proyectos</a
+              >
+            </li>
+            <li>
+              <a
+                href="#about"
+                class="link"
+                aria-label="Ir a la sección sobre mí"
+                >Sobre Mí</a
+              >
+            </li>
+            <li>
+              <a
+                href="#contact"
+                class="link"
+                aria-label="Ir a la sección de contacto"
+                >Contacto</a
+              >
+            </li>
+          </ul>
+        </div>
+        <!-- <AnimatedSection animation="fade-up" delay={200}>
+        </AnimatedSection> -->
+
+        <div>
+          <h3 class="social-title">Redes Sociales</h3>
+          <div class="social-icons">
+            <a
+              href="https://github.com/username"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="social-icon"
+              aria-label="Visitar perfil de GitHub">
+              <fa-icon [icon]="faGithub"></fa-icon>
+            </a>
+            <a
+              href="https://linkedin.com/in/username"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="social-icon"
+              aria-label="Visitar perfil de LinkedIn">
+              <fa-icon [icon]="faLinkedin"></fa-icon>
+              <span class="sr-only">LinkedIn</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <p class="copyright">
+        &copy; José Flores. Fullstack Developer. {{ today | date: 'yyyy' }}
+      </p>
+    </div>
+  </div>
+</footer>

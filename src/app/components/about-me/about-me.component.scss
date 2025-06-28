@@ -82,7 +82,7 @@
       grid-row: span 1;
     }
 
-    app-bento-card:nth-child(6){
+    app-bento-card:nth-child(6) {
       grid-column: span 2;
       grid-row: span 1;
     }
@@ -97,16 +97,16 @@
       grid-template-columns: repeat(4, 1fr);
     }
 
-    app-bento-card:nth-child(1){
+    app-bento-card:nth-child(1) {
       grid-column: span 4;
     }
     app-bento-card:nth-child(2),
     app-bento-card:nth-child(3),
     app-bento-card:nth-child(4),
-    app-bento-card:nth-child(5){
+    app-bento-card:nth-child(5) {
       grid-column: span 2;
     }
-    app-bento-card:nth-child(6){
+    app-bento-card:nth-child(6) {
       grid-column: span 1;
     }
     app-bento-card:nth-child(7) {

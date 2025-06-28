@@ -4,10 +4,11 @@
   (keydown.enter)="toggleFlip()"
   tabindex="0"
   [class.flipped]="isFlipped">
-
   <div class="card-face card-front" [@flipCard]="isFlipped ? 'back' : 'front'">
     <div class="card-content">
-      <span class="card-icon" [ngClass]="'icon-' + icon"></span>
+      <span class="card-icon">
+        <fa-icon [icon]="getIcon(icon)"></fa-icon>
+      </span>
       <h3 class="card-title">{{ title }}</h3>
       <p class="card-text">{{ frontContent }}</p>
     </div>
@@ -23,7 +24,11 @@
           @for (tech of technologies; track $index) {
             <div class="tech-item">
               <div class="tech-icon">
-                <div class="icon-placeholder"></div>
+                <div class="icon-placeholder">
+                  <fa-icon
+                    class="icon"
+                    [icon]="getTechIcon(tech.icon)"></fa-icon>
+                </div>
               </div>
               <span class="tech-name">{{ tech.name }}</span>
             </div>

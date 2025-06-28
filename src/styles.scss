@@ -20,7 +20,8 @@ body.theme-light {
   // Variables de tema claro (default)
   --primary: var(--light-primary);
   --secondary: var(--light-secondary);
-  --accent: var(--light-tertiary);
+  --tertiary: var(--light-tertiary);
+  --accent: var(--light-accent);
   --background: var(--light-background);
   --text: var(--light-text);
   --border: var(--light-border);
@@ -37,7 +38,8 @@ body {
 body.theme-dark {
   --primary: var(--dark-primary);
   --secondary: var(--dark-secondary);
-  --accent: var(--dark-tertiary);
+  --tertiary: var(--dark-tertiary);
+  --accent: var(--dark-accent);
   --text: var(--dark-text);
   --background: var(--dark-background);
   --border: var(--dark-border);

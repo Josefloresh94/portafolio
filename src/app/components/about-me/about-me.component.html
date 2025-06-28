@@ -1,6 +1,9 @@
-<section class="AboutMeContainer">
+<section id="aboutMe" class="AboutMeContainer">
   <h2 class="Title">Sobre mí</h2>
-  <p class="Subtitle">Conoce más sobre mi trayectoria, pasión por el desarrollo y habilidades técnicas</p>
+  <p class="Subtitle">
+    Conoce más sobre mi trayectoria, pasión por el desarrollo y habilidades
+    técnicas
+  </p>
 
   <div class="bento-grid">
     @for (card of cards; track $index) {
@@ -9,8 +12,7 @@
         [icon]="card.icon"
         [frontContent]="card.frontContent"
         [backContent]="card.backContent"
-        [technologies]="card.technologies"
-      />
+        [technologies]="card.technologies" />
     }
   </div>
 </section>

@@ -6,7 +6,7 @@ import { effect, inject, Injectable, signal } from '@angular/core';
 })
 export class ThemeService {
   private document = inject(DOCUMENT);
-  theme = signal<'light' | 'dark'>('light');
+  theme = signal<'light' | 'dark'>('dark');
 
   constructor() {
     // Apply theme changes to body class

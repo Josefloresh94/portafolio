@@ -1,1 +1,57 @@
-<p>certificates works!</p>
+<section id="certificates" class="certificates-container">
+  <h2 class="section-title">Certificados</h2>
+  <p class="section-subtitle">Formación continua y actualización profesional</p>
+
+  <div class="certificate-carousel">
+    <div class="certificate-display">
+      <a
+        class="nav-button prev-button"
+        type="button"
+        href=""
+        (click)="certificadoAnterior()">
+        <fa-icon [icon]="faChevronLeft"></fa-icon>
+      </a>
+
+      <div
+        class="certificate-card"
+        [class.certificadoActivo]="true"
+        [@rotarCertificados]="estadoAnimacion">
+        <div class="certificate-image">
+          <img
+            [src]="certificados[certificadoActivo].imagen"
+            [alt]="certificados[certificadoActivo].titulo" />
+        </div>
+        <div class="certificate-info">
+          <h3>{{ certificados[certificadoActivo].titulo }}</h3>
+          <div class="certificate-details">
+            <span class="platform">{{
+              certificados[certificadoActivo].plataforma
+            }}</span>
+            <span class="date">{{
+              certificados[certificadoActivo].fecha
+            }}</span>
+          </div>
+        </div>
+      </div>
+
+      <a class="nav-button next-button" (click)="certificadoSiguiente()" href="">
+        <fa-icon [icon]="faChevronRight"></fa-icon>
+      </a>
+    </div>
+
+    <div class="certificate-indicators">
+      @for (certificado of certificados; track certificado.id; let i = $index) {
+        <a
+          type="button"
+          class="indicator"
+          [class.active]="i === certificadoActivo"
+          (click)="seleccionarCertificado(i)"
+          href="">
+          @if (i === certificadoActivo) {
+            <span class="indicator-dot" [@indicadorActivo]></span>
+          }
+        </a>
+      }
+    </div>
+  </div>
+</section>

@@ -16,7 +16,7 @@ import { FooterComponent } from '../components/footer/footer.component';
     AboutMeComponent,
     ExperienceComponent,
     ProjectsComponent,
-    CertificatesComponent,
+    // CertificatesComponent,
     ContactComponent,
     FooterComponent,
   ],

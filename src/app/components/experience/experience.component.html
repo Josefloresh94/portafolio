@@ -1,1 +1,18 @@
-<p>experience works!</p>
+<section id="experience" class="ExperienceContainer">
+  <h2 class="Title">Experiencia Laboral</h2>
+  <p class="Subtitle">
+    Éstas son unas de las compañias con las que he trabajado:
+  </p>
+  <ol class="TimelineContainer">
+    @for (experience of experiences; track $index) {
+      <li class="TimelineItem">
+        <div class="timeline"></div>
+        <div>
+          <p class="Time">{{ experience.date }}</p>
+          <h3 class="Enterprice">{{ experience.title }}</h3>
+          <p class="Description">{{ experience.description }}</p>
+        </div>
+      </li>
+    }
+  </ol>
+</section>

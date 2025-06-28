@@ -1,17 +1,17 @@
 $colors-palette: (
-  'light-primary': #d4af37,
+  'light-primary': #ffd700,
+  'light-secondary': #ffd300,
+  'light-tertiary': #d4af37,
+  'light-accent': #8b6f1a,
   'light-background': #ffffff,
   'light-text': #0a0a0a,
-  'light-secondary': #e5c76b,
-  'light-tertiary': #f1d79c,
-  'light-accent': #c0c0c0,
 
-  'dark-primary': #1e3a8a,
+  'dark-primary': #3b82f6,
+  'dark-secondary': #1e3a8a,
+  'dark-tertiary': #2563eb,
+  'dark-accent': #60a5fa,
   'dark-background': #121212,
   'dark-text': #f9fafb,
-  'dark-secondary': #3b82f6,
-  'dark-tertiary': #7596c5,
-  'dark-accent': #828282,
 );
 
 $themes: (
