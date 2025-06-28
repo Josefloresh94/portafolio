@@ -1,103 +1,79 @@
-<section id="ContactContainer">
-  <div class="text-center mb-8">
-    <h2 class="text-3xl font-bold mb-2 dark:text-slate-100">Contacto</h2>
-    <div class="w-20 h-1 bg-primary mx-auto mb-6"></div>
-  </div>
-  <div class="max-w-2xl mx-auto">
-    <div class="border rounded-lg p-6 border-slate-200 dark:border-slate-800">
-      <div class="mb-6">
-        <h3 class="text-xl sm:text-2xl font-semibold mb-2 dark:text-slate-100">
-          Envíame un mensaje
-        </h3>
-        <p class="text-sm sm:text-base text-slate-600 dark:text-slate-400">
-          Completa el formulario y me pondré en contacto contigo lo antes
-          posible.
-        </p>
+<section id="contact" class="ContactContainer">
+  <h2 class="Title">Contacto</h2>
+  <p class="Subtitle">
+    ¿Tienes un proyecto en mente? ¡Hablemos!
+  </p>
+  <div class="Contact">
+    <form [formGroup]="form" (ngSubmit)="submit()">
+      <div class="Contact-Data">
+        <div class="space-y-1 sm:space-y-2">
+          <label
+            for="name"
+            class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 dark:text-slate-300">
+            Nombre
+          </label>
+          <input
+            id="name"
+            name="name"
+            formControlName="name"
+            placeholder="Tu nombre"
+            class="w-full px-3 py-2 border rounded-md border-slate-300 dark:bg-slate-800 dark:border-slate-700"
+            />
+        </div>
+        <div class="space-y-1 sm:space-y-2">
+          <label
+            for="email"
+            class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 dark:text-slate-300">
+            Email
+          </label>
+          <input
+            id="email"
+            name="email"
+            type="email"
+            formControlName="email"
+            placeholder="tu@email.com"
+            class="w-full px-3 py-2 border rounded-md border-slate-300 dark:bg-slate-800 dark:border-slate-700"
+            />
+        </div>
       </div>
-      <div>
-        <form (ngSubmit)="onSubmit()" class="space-y-3 sm:space-y-4">
-          <div class="grid gap-3 sm:gap-4 sm:grid-cols-2">
-            <div class="space-y-1 sm:space-y-2">
-              <label
-                for="name"
-                class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 dark:text-slate-300">
-                Nombre
-              </label>
-              <input
-                id="name"
-                name="name"
-                [(ngModel)]="formData.name"
-                placeholder="Tu nombre"
-                required
-                class="w-full px-3 py-2 border rounded-md border-slate-300 dark:bg-slate-800 dark:border-slate-700"
-                aria-required="true" />
-            </div>
-            <div class="space-y-1 sm:space-y-2">
-              <label
-                for="email"
-                class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 dark:text-slate-300">
-                Email
-              </label>
-              <input
-                id="email"
-                name="email"
-                type="email"
-                [(ngModel)]="formData.email"
-                placeholder="tu@email.com"
-                required
-                class="w-full px-3 py-2 border rounded-md border-slate-300 dark:bg-slate-800 dark:border-slate-700"
-                aria-required="true" />
-            </div>
-          </div>
 
-          <div class="space-y-1 sm:space-y-2">
-            <label
-              for="subject"
-              class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 dark:text-slate-300">
-              Asunto
-            </label>
-            <input
-              id="subject"
-              name="subject"
-              [(ngModel)]="formData.subject"
-              placeholder="Asunto del mensaje"
-              required
-              class="w-full px-3 py-2 border rounded-md border-slate-300 dark:bg-slate-800 dark:border-slate-700"
-              aria-required="true" />
-          </div>
-
-          <div class="space-y-1 sm:space-y-2">
-            <label
-              for="message"
-              class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 dark:text-slate-300">
-              Mensaje
-            </label>
-            <textarea
-              id="message"
-              name="message"
-              [(ngModel)]="formData.message"
-              placeholder="Escribe tu mensaje aquí..."
-              class="w-full px-3 py-2 border rounded-md border-slate-300 min-h-[120px] sm:min-h-[150px] dark:bg-slate-800 dark:border-slate-700"
-              required
-              aria-required="true"></textarea>
-          </div>
-
-          <button
-            type="submit"
-            class="w-full bg-primary text-white py-2 px-4 rounded-md hover:bg-primary-dark transition-colors"
-            [disabled]="isSubmitting"
-            aria-label="Enviar mensaje">
-            <ng-container *ngIf="isSubmitting">
-              <span
-                class="inline-block mr-2 h-4 w-4 animate-spin rounded-full border-2 border-solid border-current border-r-transparent"></span>
-              <span>Enviando...</span>
-            </ng-container>
-            <ng-container *ngIf="!isSubmitting">
-              <span>Enviar Mensaje</span>
-            </ng-container>
-          </button>
-        </form>
+      <div class="Contact-Subject">
+        <label
+          for="subject"
+          class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 dark:text-slate-300">
+          Asunto
+        </label>
+        <input
+          id="subject"
+          name="subject"
+          formControlName="subject"
+          placeholder="Asunto del mensaje"
+          class="w-full px-3 py-2 border rounded-md border-slate-300 dark:bg-slate-800 dark:border-slate-700"
+          />
       </div>
-    </div>
+
+      <div class="Contact-Message">
+        <label
+          for="message"
+          class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 dark:text-slate-300">
+          Mensaje
+        </label>
+        <textarea
+          id="message"
+          name="message"
+          formControlName="message"
+          placeholder="Escribe tu mensaje aquí..."
+          class="w-full px-3 py-2 border rounded-md border-slate-300 min-h-[120px] sm:min-h-[150px] dark:bg-slate-800 dark:border-slate-700"
+          ></textarea>
+      </div>
+
+      <button
+        type="submit"
+        class="w-full bg-primary text-white py-2 px-4 rounded-md hover:bg-primary-dark transition-colors"
+        [disabled]="isSubmitting"
+        aria-label="Enviar mensaje">
+        Enviar mensaje
+      </button>
+    </form>
   </div>
 </section>

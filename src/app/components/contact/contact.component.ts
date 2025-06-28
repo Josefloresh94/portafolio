@@ -1,53 +1,61 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import {
+  FormBuilder,
+  FormsModule,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
 import { CommonModule } from '@angular/common';
-
-interface FormData {
-  name: string;
-  email: string;
-  subject: string;
-  message: string;
-}
+import { Contact } from '../../models/contact';
+import { toast } from 'ngx-sonner';
+import emailjs, { EmailJSResponseStatus } from '@emailjs/browser';
 
 @Component({
   selector: 'app-contact',
   standalone: true,
-  imports: [FormsModule, CommonModule],
+  imports: [FormsModule, CommonModule, ReactiveFormsModule],
   templateUrl: './contact.component.html',
   styleUrl: './contact.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ContactComponent {
-  formData: FormData = {
-    name: '',
-    email: '',
-    subject: '',
-    message: '',
-  };
+  private _formBuilder = inject(FormBuilder);
+
+  form = this._formBuilder.group<Contact>({
+    name: this._formBuilder.control('', Validators.required),
+    email: this._formBuilder.control('', [
+      Validators.email,
+      Validators.required,
+    ]),
+    subject: this._formBuilder.control('', Validators.required),
+    message: this._formBuilder.control('', Validators.required),
+  });
 
   isSubmitting = false;
 
-  onSubmit(): void {
-    this.isSubmitting = true;
+  async submit() {
+    if (this.form.invalid) return;
 
-    // Aquí iría la lógica para enviar el formulario
-    // Por ejemplo, usando un servicio para enviar los datos a un backend
+    try {
+      const { name, email, subject, message } = this.form.value;
 
-    // Simulamos una respuesta después de 2 segundos
-    setTimeout(() => {
-      console.log('Formulario enviado:', this.formData);
-      this.isSubmitting = false;
-      this.resetForm();
-      // Aquí podrías mostrar un mensaje de éxito
-    }, 2000);
-  }
+      if (!name || !email || !subject || !message) return;
 
-  private resetForm(): void {
-    this.formData = {
-      name: '',
-      email: '',
-      subject: '',
-      message: '',
-    };
+      await emailjs.send(
+        'service_aoc965m',
+        'template_q78mwzl',
+        this.form.value,
+        { publicKey: '9n7O4Ix131Q2ZDLPi' }
+      );
+
+      toast.success('Correo enviado con éxito!');
+      this.form.reset();
+    } catch (error) {
+      toast.error('Error al enviar tu mensaje. Por favor, inténtalo de nuevo.');
+      console.error(
+        'Error al crear el usuario:',
+        error as EmailJSResponseStatus
+      );
+    }
   }
 }
