@@ -80,6 +80,28 @@
     width: 220px;
     height: 220px;
     margin-top: 1.5rem;
+
+    .BackgroundGlow {
+      position: absolute;
+      inset: 0;
+      border-radius: 9999px;
+      background: linear-gradient(to right, var(--primary), var(--secondary));
+      // animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+    }
+
+    .ImageContainer {
+      position: absolute;
+      inset: 6px;
+      border-radius: 9999px;
+      overflow: hidden;
+      background-color: var(--background);
+
+      img {
+        object-fit: cover;
+        width: 100%;
+        height: 100%;
+      }
+    }
   }
 
   @media (min-width: 640px) {
@@ -106,28 +128,6 @@
     .HeroRight {
       width: 280px;
       height: 280px;
-    }
-
-    .BackgroundGlow {
-      position: absolute;
-      inset: 0;
-      border-radius: 9999px;
-      background: linear-gradient(to right, var(--primary), var(--secondary));
-      animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-    }
-
-    .ImageContainer {
-      position: absolute;
-      inset: 6px;
-      border-radius: 9999px;
-      overflow: hidden;
-      background-color: var(--background);
-
-      img {
-        object-fit: cover;
-        width: 100%;
-        height: 100%;
-      }
     }
   }
 

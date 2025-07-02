@@ -124,11 +124,6 @@ export class BentoCardComponent {
       ef: this.faDatabase,
       mongodb: this.faDatabase,
       azure: this.faCloud,
-      // 'api': this.faPlug,
-      // 'cicd': this.faCodeBranch,
-      // 'agile': this.faSync,
-      // 'scrum': this.faUsers,
-      // 'kanban': this.faTasks
     };
     return techIconMap[icon] || this.faCode;
   }

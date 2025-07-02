@@ -33,8 +33,10 @@ export class AboutMeComponent {
       frontContent: 'Click para ver tecnologías',
       backContent: 'Desarrollo de APIs robustas y servicios escalables',
       technologies: [
+        { name: 'Java', icon: 'java' },
+        { name: 'Spring Boot 3', icon: 'java' },
         { name: 'C#', icon: 'csharp' },
-        { name: '.NET Core', icon: 'dotnet' },
+        { name: 'Entity Framework', icon: 'ef' },
         { name: 'ASP.NET', icon: 'aspnet' },
         { name: 'Web API', icon: 'api' },
       ],
@@ -47,7 +49,6 @@ export class AboutMeComponent {
         'Diseño y optimización de bases de datos relacionales y NoSQL',
       technologies: [
         { name: 'SQL Server', icon: 'sqlserver' },
-        { name: 'Entity Framework', icon: 'ef' },
         { name: 'MongoDB', icon: 'mongodb' },
       ],
     },
@@ -58,9 +59,9 @@ export class AboutMeComponent {
       backContent:
         'Implementación y mantenimiento de infraestructura en la nube',
       technologies: [
-        { name: 'Azure', icon: 'azure' },
+        // { name: 'Azure', icon: 'azure' },
         { name: 'Docker', icon: 'docker' },
-        { name: 'CI/CD', icon: 'cicd' },
+        // { name: 'CI/CD', icon: 'cicd' },
         { name: 'Git', icon: 'git' },
         { name: 'GitHub', icon: 'github' },
       ],
@@ -74,7 +75,7 @@ export class AboutMeComponent {
       technologies: [
         { name: 'Agile', icon: 'agile' },
         { name: 'Scrum', icon: 'scrum' },
-        { name: 'Kanban', icon: 'kanban' },
+        // { name: 'Kanban', icon: 'kanban' },
       ],
     },
     {
