@@ -78,13 +78,29 @@
 
   .project-image {
     background: var(--background);
-    min-height: 160px;
+    min-height: 180px;
     display: flex;
     align-items: center;
     justify-content: center;
+    overflow: hidden;
+
+    swiper-container {
+      width: 100%;
+      height: 100%;
+      --swiper-navigation-color: var(--primary);
+      --swiper-pagination-color: var(--primary);
+    }
+    swiper-slide {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+    }
     img {
       width: 100%;
-      height: 160px;
+      height: 180px;
       object-fit: cover;
       display: block;
     }

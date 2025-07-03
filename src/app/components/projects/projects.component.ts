@@ -6,11 +6,13 @@ import {
   Component,
   computed,
   signal,
+  CUSTOM_ELEMENTS_SCHEMA,
 } from '@angular/core';
 import { Project } from '../../models/project';
 import { CommonModule } from '@angular/common';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-
+import { register } from 'swiper/element/bundle';
+register();
 @Component({
   selector: 'app-projects',
   imports: [CommonModule, FontAwesomeModule],
@@ -18,6 +20,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
   templateUrl: './projects.component.html',
   styleUrl: './projects.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class ProjectsComponent {
   filters = ['Todos', 'Básico', 'Intermedio', 'Avanzado'] as const;
@@ -41,5 +44,45 @@ export class ProjectsComponent {
 
   trackByProjectId(index: number, project: Project) {
     return project.id;
+  }
+
+  projectImages: Record<string, Array<{src: string, alt: string}>> = {
+    'firebase-crud': [
+      {
+        src: 'assets/images/Projects/crud-firebase/firebase-1.png',
+        alt: 'Firebase CRUD - Pantalla principal'
+      },
+      {
+        src: 'assets/images/Projects/crud-firebase/firebase-2.png',
+        alt: 'Firebase CRUD - Formulario de creación'
+      },
+      {
+        src: 'assets/images/Projects/crud-firebase/firebase-3.png',
+        alt: 'Firebase CRUD - Vista de detalles'
+      }
+    ],
+    'store': [
+      {
+        src: 'assets/images/Projects/store/store-1.png',
+        alt: 'Store - Pantalla principal'
+      },
+      {
+        src: 'assets/images/Projects/store/store-2.png',
+        alt: 'Firebase CRUD - Formulario de creación'
+      },
+      {
+        src: 'assets/images/Projects/store/store-3.png',
+        alt: 'Firebase CRUD - Vista de detalles'
+      }
+    ],
+  };
+
+  // Método para obtener las imágenes según el proyecto
+  getProjectImages(projectTitle: string): Array<{src: string, alt: string}> {
+    // Convertir el título a un formato de clave (minúsculas, sin espacios)
+    const key = projectTitle.toLowerCase().replace(/\s+/g, '-');
+
+    // Retornar las imágenes del proyecto si existen, o las imágenes por defecto
+    return this.projectImages[key] || this.projectImages['default'];
   }
 }
