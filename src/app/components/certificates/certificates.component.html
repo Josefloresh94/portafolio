@@ -1,60 +1,39 @@
 <section id="certificates" class="certificates-container">
-  <h2 class="section-title">Certificados</h2>
-  <p class="section-subtitle">Formación continua y actualización profesional</p>
+  <h2 class="title">Certificados</h2>
+  <p class="subtitle">Formación continua y actualización profesional</p>
 
-  <div class="certificate-carousel">
-    <div class="certificate-display">
-      <a
-        class="nav-button prev-button"
-        type="button"
-        href=""
-        (click)="certificadoAnterior()">
-        <fa-icon [icon]="faChevronLeft"></fa-icon>
-      </a>
+  <!-- Navegación por categorías -->
+  <div class="categories-nav">
+    @for (categoria of categorias(); track categoria) {
+      <button
+        class="category-btn {{
+          categoriaSeleccionada === categoria ? 'active' : ''
+        }}"
+        (click)="setCategoria(categoria)">
+        {{ categoria }}
+      </button>
+    }
+  </div>
 
-      <div
-        class="certificate-card"
-        [class.certificadoActivo]="true"
-        [@rotarCertificados]="estadoAnimacion">
-        <div class="certificate-image">
-          <img
-            [src]="certificados[certificadoActivo].imagen"
-            [alt]="certificados[certificadoActivo].titulo" />
-        </div>
-        <div class="certificate-info">
-          <h3>{{ certificados[certificadoActivo].titulo }}</h3>
-          <div class="certificate-details">
-            <span class="platform">{{
-              certificados[certificadoActivo].plataforma
-            }}</span>
-            <span class="date">{{
-              certificados[certificadoActivo].fecha
-            }}</span>
+  <swiper-container
+    style="width: 100%"
+    slides-per-view="3"
+    navigation="true"
+    pagination="true"
+    loop="true">
+    @for (certificado of certificadosFiltrados(); track certificado.id) {
+      <swiper-slide>
+        <div class="certificado-card">
+          <div class="certificado-image">
+            <img [src]="certificado.imagen" alt="image.alt" />
+          </div>
+          <div class="certificado-content">
+            <h3 class="certificado-title">{{ certificado.titulo }}</h3>
+            <p class="certificado-platform">{{ certificado.plataforma }}</p>
+            <p class="certificado-date">{{ certificado.fecha }}</p>
           </div>
         </div>
-      </div>
-
-      <a
-        class="nav-button next-button"
-        (click)="certificadoSiguiente()"
-        href="">
-        <fa-icon [icon]="faChevronRight"></fa-icon>
-      </a>
-    </div>
-
-    <div class="certificate-indicators">
-      @for (certificado of certificados; track certificado.id; let i = $index) {
-        <a
-          type="button"
-          class="indicator"
-          [class.active]="i === certificadoActivo"
-          (click)="seleccionarCertificado(i)"
-          href="">
-          @if (i === certificadoActivo) {
-            <span class="indicator-dot" [@indicadorActivo]></span>
-          }
-        </a>
-      }
-    </div>
-  </div>
+      </swiper-slide>
+    }
+  </swiper-container>
 </section>

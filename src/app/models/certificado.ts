@@ -4,4 +4,9 @@ export interface Certificado {
   plataforma: string;
   fecha: string;
   imagen: string;
+  categoria: string;
+}
+
+export interface CertificadosPorCategoria {
+  [categoría: string]: Certificado[];
 }

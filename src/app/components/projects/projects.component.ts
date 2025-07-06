@@ -46,39 +46,39 @@ export class ProjectsComponent {
     return project.id;
   }
 
-  projectImages: Record<string, Array<{src: string, alt: string}>> = {
+  projectImages: Record<string, Array<{ src: string; alt: string }>> = {
     'firebase-crud': [
       {
         src: 'assets/images/Projects/crud-firebase/firebase-1.png',
-        alt: 'Firebase CRUD - Pantalla principal'
+        alt: 'Firebase CRUD - Pantalla principal',
       },
       {
         src: 'assets/images/Projects/crud-firebase/firebase-2.png',
-        alt: 'Firebase CRUD - Formulario de creación'
+        alt: 'Firebase CRUD - Formulario de creación',
       },
       {
         src: 'assets/images/Projects/crud-firebase/firebase-3.png',
-        alt: 'Firebase CRUD - Vista de detalles'
-      }
+        alt: 'Firebase CRUD - Vista de detalles',
+      },
     ],
-    'store': [
+    store: [
       {
         src: 'assets/images/Projects/store/store-1.png',
-        alt: 'Store - Pantalla principal'
+        alt: 'Store - Pantalla principal',
       },
       {
         src: 'assets/images/Projects/store/store-2.png',
-        alt: 'Firebase CRUD - Formulario de creación'
+        alt: 'Firebase CRUD - Formulario de creación',
       },
       {
         src: 'assets/images/Projects/store/store-3.png',
-        alt: 'Firebase CRUD - Vista de detalles'
-      }
+        alt: 'Firebase CRUD - Vista de detalles',
+      },
     ],
   };
 
   // Método para obtener las imágenes según el proyecto
-  getProjectImages(projectTitle: string): Array<{src: string, alt: string}> {
+  getProjectImages(projectTitle: string): Array<{ src: string; alt: string }> {
     // Convertir el título a un formato de clave (minúsculas, sin espacios)
     const key = projectTitle.toLowerCase().replace(/\s+/g, '-');
 

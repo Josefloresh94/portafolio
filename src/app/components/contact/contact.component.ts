@@ -1,7 +1,6 @@
 import {
   ChangeDetectionStrategy,
   Component,
-  computed,
   inject,
   signal,
 } from '@angular/core';
@@ -35,15 +34,13 @@ export class ContactComponent {
     ]),
     subject: this._formBuilder.control('', [
       Validators.minLength(3),
-      Validators.required
+      Validators.required,
     ]),
     message: this._formBuilder.control('', [
       Validators.minLength(5),
-      Validators.required
+      Validators.required,
     ]),
   });
-
-  isSubmitting = signal(false);
 
   async submit() {
     if (this.form.invalid) return;
@@ -52,8 +49,6 @@ export class ContactComponent {
       const { name, email, subject, message } = this.form.value;
 
       if (!name || !email || !subject || !message) return;
-
-      this.isSubmitting.set(true);
 
       await emailjs.send(
         'service_aoc965m',
@@ -70,8 +65,6 @@ export class ContactComponent {
         'Error al crear el usuario:',
         error as EmailJSResponseStatus
       );
-    } finally {
-      this.isSubmitting.set(false);
     }
   }
 }

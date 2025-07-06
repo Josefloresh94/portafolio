@@ -18,15 +18,13 @@
     @for (project of filteredProjects(); track project.id) {
       <div class="project-card">
         <div class="project-image">
-          <!-- @if (project.image) { -->
-            <swiper-container loop="true" navigation="true" pagination="true">
-              @for (image of getProjectImages(project.title); track $index) {
-                <swiper-slide><img [src]="image.src" [alt]="image.alt"></swiper-slide>
-              }
-            </swiper-container>
-          <!-- } @else {
-            <span class="placeholder-icon">🖼️</span>
-          } -->
+          <swiper-container navigation="true" pagination="true">
+            @for (image of getProjectImages(project.title); track $index) {
+              <swiper-slide
+                ><img [src]="image.src" [alt]="image.alt"
+              /></swiper-slide>
+            }
+          </swiper-container>
         </div>
         <div class="project-content">
           <div class="project-header">

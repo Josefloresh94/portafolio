@@ -1,225 +1,241 @@
 import {
   ChangeDetectionStrategy,
   Component,
-  OnDestroy,
-  OnInit,
+  computed,
+  CUSTOM_ELEMENTS_SCHEMA,
+  signal,
 } from '@angular/core';
-import { Certificado } from '../../models/certificado';
-import {
-  trigger,
-  state,
-  style,
-  transition,
-  animate,
-  group,
-} from '@angular/animations';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import {
-  faChevronLeft,
-  faChevronRight,
-} from '@fortawesome/free-solid-svg-icons';
+import { CertificadosPorCategoria } from '../../models/certificado';
+import { register } from 'swiper/element/bundle';
+register();
 
 @Component({
   selector: 'app-certificates',
   standalone: true,
-  imports: [FontAwesomeModule],
+  imports: [],
   templateUrl: './certificates.component.html',
   styleUrl: './certificates.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  animations: [
-    trigger('rotarCertificados', [
-      state(
-        'visible',
-        style({
-          opacity: 1,
-          transform: 'translateY(0) scale(1)',
-        })
-      ),
-      state(
-        'oculto',
-        style({
-          opacity: 0,
-          transform: 'translateY(-30px) scale(0.95)',
-        })
-      ),
-      transition('visible => oculto', [
-        group([
-          animate(
-            '400ms cubic-bezier(0.4, 0.0, 0.2, 1)',
-            style({ opacity: 0 })
-          ),
-          animate(
-            '500ms cubic-bezier(0.4, 0.0, 0.2, 1)',
-            style({ transform: 'translateY(-30px) scale(0.95)' })
-          ),
-        ]),
-      ]),
-      transition('oculto => visible', [
-        group([
-          animate(
-            '400ms cubic-bezier(0.4, 0.0, 0.2, 1)',
-            style({ opacity: 1 })
-          ),
-          animate(
-            '500ms cubic-bezier(0.4, 0.0, 0.2, 1)',
-            style({ transform: 'translateY(0) scale(1)' })
-          ),
-        ]),
-      ]),
-    ]),
-    trigger('indicadorActivo', [
-      transition(':enter', [
-        style({ transform: 'scale(0)', opacity: 0 }),
-        animate(
-          '300ms cubic-bezier(0.4, 0.0, 0.2, 1)',
-          style({ transform: 'scale(1)', opacity: 1 })
-        ),
-      ]),
-      transition(':leave', [
-        animate(
-          '300ms cubic-bezier(0.4, 0.0, 0.2, 1)',
-          style({ transform: 'scale(0)', opacity: 0 })
-        ),
-      ]),
-    ]),
-  ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
-export class CertificatesComponent implements OnInit, OnDestroy {
-  faChevronLeft = faChevronLeft;
-  faChevronRight = faChevronRight;
+export class CertificatesComponent {
+  private _certificados = signal<CertificadosPorCategoria>(
+    this.inicializarCertificados()
+  );
+  private _categoriaSeleccionada = signal<string>('Todos');
+  public categorias = computed((): string[] => [
+    'Todos',
+    ...Object.keys(this._certificados()),
+  ]);
 
-  certificados: Certificado[] = [
-    {
-      id: 1,
-      titulo: 'Curso Angular 17',
-      plataforma: 'Platzi',
-      fecha: 'Enero 2024',
-      imagen: '../../../assets/images/Angular/diploma-angular.jpg',
-    },
-    {
-      id: 2,
-      titulo: 'Curso de Docker',
-      plataforma: 'Platzi',
-      fecha: 'Enero 2023',
-      imagen: '../../../assets/images/',
-    },
-    {
-      id: 3,
-      titulo: 'MongoDB DB',
-      plataforma: 'Platzi',
-      fecha: 'Marzo 2023',
-      imagen: '../../../assets/images/',
-    },
-    {
-      id: 4,
-      titulo: 'Git y GitHub',
-      plataforma: 'Platzi',
-      fecha: 'Mayo 2023',
-      imagen: '../../../assets/images/',
-    },
-    {
-      id: 5,
-      titulo: 'Curso de FIGMA',
-      plataforma: 'Platzi',
-      fecha: 'Julio 2023',
-      imagen: '../../../assets/images/',
-    },
-    {
-      id: 6,
-      titulo: 'React JS',
-      plataforma: 'Platzi',
-      fecha: 'Septiembre 2023',
-      imagen: '../../../assets/images/',
-    },
-    {
-      id: 7,
-      titulo: 'Fundamentos de Criptografía',
-      plataforma: 'Platzi',
-      fecha: 'Noviembre 2024',
-      imagen: '../../../assets/images/',
-    },
-    {
-      id: 8,
-      titulo: 'Funciones con JS Library',
-      plataforma: 'Platzi',
-      fecha: 'Diciembre 2024',
-      imagen: '../../../assets/images/',
-    },
-  ];
-
-  certificadoActivo = 0;
-  estadoAnimacion: 'visible' | 'oculto' = 'visible';
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  intervaloRotacion: any;
-
-  ngOnInit(): void {
-    this.iniciarRotacion();
+  get categoriaSeleccionada() {
+    return this._categoriaSeleccionada();
+  }
+  // Getter para acceder a los certificados desde el template
+  get certificados(): CertificadosPorCategoria {
+    return this._certificados();
   }
 
-  ngOnDestroy(): void {
-    this.detenerRotacion();
+  setCategoria(categoria: string) {
+    this._categoriaSeleccionada.set(categoria);
   }
 
-  iniciarRotacion(): void {
-    this.intervaloRotacion = setInterval(() => {
-      this.cambiarCertificado();
-    }, 4000); // Cambio cada 3 segundos
-  }
-
-  detenerRotacion(): void {
-    if (this.intervaloRotacion) {
-      clearInterval(this.intervaloRotacion);
-      this.intervaloRotacion = null;
+  public certificadosFiltrados = computed(() => {
+    const categoria = this._categoriaSeleccionada();
+    const certificados = this._certificados();
+    if (categoria === 'Todos') {
+      // Unir todos los arrays de certificados
+      return Object.values(certificados).flat();
     }
-  }
+    return certificados[categoria] || [];
+  });
 
-  cambiarCertificado(direccion: 'siguiente' | 'anterior' = 'siguiente'): void {
-    // Primero ocultamos el certificado actual
-    this.estadoAnimacion = 'oculto';
-
-    setTimeout(() => {
-      // Cambiamos al siguiente o anterior certificado
-      if (direccion === 'siguiente') {
-        this.certificadoActivo =
-          (this.certificadoActivo + 1) % this.certificados.length;
-      } else {
-        this.certificadoActivo =
-          (this.certificadoActivo - 1 + this.certificados.length) %
-          this.certificados.length;
-      }
-      // Hacemos visible el nuevo certificado
-      this.estadoAnimacion = 'visible';
-    }, 500); // Tiempo para completar la animación de ocultamiento
-  }
-
-  seleccionarCertificado(index: number): void {
-    if (index === this.certificadoActivo) return;
-
-    this.detenerRotacion();
-    this.estadoAnimacion = 'oculto';
-
-    setTimeout(() => {
-      this.certificadoActivo = index;
-      this.estadoAnimacion = 'visible';
-      this.iniciarRotacion();
-    }, 500);
-  }
-
-  certificadoAnterior(): void {
-    this.detenerRotacion();
-    this.cambiarCertificado('anterior');
-
-    // Reanudamos la rotación después de un tiempo
-    setTimeout(() => {
-      this.iniciarRotacion();
-    }, 500);
-  }
-
-  certificadoSiguiente(): void {
-    this.detenerRotacion();
-    this.cambiarCertificado('siguiente');
-
-    // Reanudamos la rotación después de un tiempo
-    this.iniciarRotacion();
+  private inicializarCertificados(): CertificadosPorCategoria {
+    return {
+      Angular: [
+        {
+          id: 1,
+          titulo: 'Curso Angular 17',
+          plataforma: 'Platzi',
+          fecha: 'Enero 2024',
+          imagen: 'assets/images/Angular/diploma-angular.jpg',
+          categoria: 'Angular',
+        },
+        {
+          id: 2,
+          titulo: 'Curso Angular con Tailwind',
+          plataforma: 'Platzi',
+          fecha: 'Enero 2024',
+          imagen: 'assets/images/Angular/diploma-angular-tailwind.jpg',
+          categoria: 'Angular',
+        },
+        {
+          id: 3,
+          titulo: 'Curso Angular con Tailwind',
+          plataforma: 'Platzi',
+          fecha: 'Enero 2024',
+          imagen: 'assets/images/Angular/diploma-angular-tailwind.jpg',
+          categoria: 'Angular',
+        },
+      ],
+      BaseDeDatos: [
+        {
+          id: 4,
+          titulo: 'Base de Datos',
+          plataforma: 'Platzi',
+          fecha: 'Marzo 2023',
+          imagen: 'assets/images/BaseDeDatos/diploma-bd.jpg',
+          categoria: 'BaseDeDatos',
+        },
+        {
+          id: 5,
+          titulo: 'MySQL y MariaDB',
+          plataforma: 'Platzi',
+          fecha: 'Abril 2023',
+          imagen: 'assets/images/BaseDeDatos/diploma-mysql-mariadb.jpg',
+          categoria: 'BaseDeDatos',
+        },
+        {
+          id: 6,
+          titulo: 'Oracle Database - Curso',
+          plataforma: 'Oracle Academy',
+          fecha: 'Diciembre 2023',
+          imagen: 'assets/images/BaseDeDatos/JoseFloresDataBaseOracle.jpg',
+          categoria: 'BaseDeDatos',
+        },
+        {
+          id: 7,
+          titulo: 'Oracle Database - Examen',
+          plataforma: 'Oracle Academy',
+          fecha: 'Diciembre 2023',
+          imagen: 'assets/images/BaseDeDatos/JoseFloresBaseDeDatosOracleExamen.jpg',
+          categoria: 'BaseDeDatos',
+        },
+      ],
+      Java: [
+        {
+          id: 8,
+          titulo: 'Java Fundamentals - Examen',
+          plataforma: 'Oracle Academy',
+          fecha: 'Diciembre 2023',
+          imagen: 'assets/images/JAVA/JoseFloresJavaFundamentals.jpg',
+          categoria: 'Java',
+        },
+        {
+          id: 9,
+          titulo: 'Java Fundamentals - Curso',
+          plataforma: 'Oracle Academy',
+          fecha: 'Mayo 2023',
+          imagen: 'assets/images/JAVA/JoseFloresOracleJavaFundamentals.jpg',
+          categoria: 'JAVA',
+        },
+        {
+          id: 10,
+          titulo: 'Introducción a Java SE',
+          plataforma: 'Platzi',
+          fecha: 'Septiembre 2020',
+          imagen: 'assets/images/JAVA/diploma-java-basico.jpg',
+          categoria: 'JAVA',
+        },
+        {
+          id: 11,
+          titulo: 'Java SE Orientado a Objetos',
+          plataforma: 'Platzi',
+          fecha: 'Noviembre 2023',
+          imagen: 'assets/images/JAVA/diploma-java-oop.jpg',
+          categoria: 'JAVA',
+        },
+        {
+          id: 12,
+          titulo: 'Programación Orientada a Objetos con Java',
+          plataforma: 'TODO CODE Academy',
+          fecha: 'Julio 2024',
+          imagen: 'assets/images/JAVA/CursoPOOJavaTodoCode.jpg',
+          categoria: 'JAVA',
+        },
+        {
+          id: 13,
+          titulo: 'Java SE Persistencia de Datos',
+          plataforma: 'Platzi',
+          fecha: 'Noviembre 2023',
+          imagen: 'assets/images/JAVA/diploma-java-persistencia.jpg',
+          categoria: 'JAVA',
+        },
+        {
+          id: 14,
+          titulo: 'JAVA SE: SQL y Bases de Datos',
+          plataforma: 'Platzi',
+          fecha: 'Noviembre 2023',
+          imagen: 'assets/images/JAVA/diploma-java-sql.jpg',
+          categoria: 'JAVA',
+        },
+        {
+          id: 15,
+          titulo: 'Microservicios con Spring Cloud',
+          plataforma: 'Platzi',
+          fecha: 'Septiembre 2024',
+          imagen: 'assets/images/JAVA/diploma-microservicios.jpg',
+          categoria: 'JAVA',
+        },
+        {
+          id: 16,
+          titulo: 'Testing en JAVA',
+          plataforma: 'Platzi',
+          fecha: 'Noviembre 2023',
+          imagen: 'assets/images/JAVA/diploma-testing-java.jpg',
+          categoria: 'BaseDeDatos',
+        },
+      ],
+      'Html - CSS': [
+        {
+          id: 17,
+          titulo: 'CSS Grid Básico',
+          plataforma: 'Platzi',
+          fecha: 'Abril 2023',
+          imagen: 'assets/images/HtmlCss/diploma-css-grid.jpg',
+          categoria: 'Html - Css',
+        },
+        {
+          id: 18,
+          titulo: 'Diseño web con CSS Grid y Flexbox',
+          plataforma: 'Platzi',
+          fecha: 'Abril 2023',
+          imagen: 'assets/images/HtmlCss/diploma-flexbox-css-grid.jpg',
+          categoria: 'Html - Css',
+        },
+        {
+          id: 19,
+          titulo: 'Responsive Design: Maquetación Mobile First',
+          plataforma: 'Platzi',
+          fecha: 'Junio 2021',
+          imagen: 'assets/images/HtmlCss/diploma-mobile-first.jpg',
+          categoria: 'Html - Css',
+        },
+        {
+          id: 20,
+          titulo: 'Maquetación en CSS',
+          plataforma: 'Platzi',
+          fecha: 'Agosto 2020',
+          imagen: 'assets/images/HtmlCss/diploma-practico-css.jpg',
+          categoria: 'Html - Css',
+        },
+        {
+          id: 21,
+          titulo: 'Fundamentos de SASS',
+          plataforma: 'Platzi',
+          fecha: 'Noviembre 2023',
+          imagen: 'assets/images/HtmlCss/diploma-sass.jpg',
+          categoria: 'Html - Css',
+        },
+        {
+          id: 22,
+          titulo: 'Tailwind CSS',
+          plataforma: 'Platzi',
+          fecha: 'Abril 2023',
+          imagen: 'assets/images/HtmlCss/diploma-tailwind.jpg',
+          categoria: 'BaseDeDatos',
+        },
+      ],
+    };
   }
 }
