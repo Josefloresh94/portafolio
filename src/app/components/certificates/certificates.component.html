@@ -6,9 +6,8 @@
   <div class="categories-nav">
     @for (categoria of categorias(); track categoria) {
       <button
-        class="category-btn {{
-          categoriaSeleccionada === categoria ? 'active' : ''
-        }}"
+        class="category-btn"
+        [class.active]="categoriaSeleccionada === categoria"
         (click)="setCategoria(categoria)">
         {{ categoria }}
       </button>
@@ -17,10 +16,21 @@
 
   <swiper-container
     style="width: 100%"
-    slides-per-view="3"
+    [slides-per-view]="3"
     navigation="true"
     pagination="true"
-    loop="true">
+    [breakpoints]="{
+        '640': {
+          slidesPerView: 1,
+        },
+        '768': {
+          slidesPerView: 2,
+        },
+        '1024': {
+          slidesPerView: 3,
+        },
+
+      }">
     @for (certificado of certificadosFiltrados(); track certificado.id) {
       <swiper-slide>
         <div class="certificado-card">

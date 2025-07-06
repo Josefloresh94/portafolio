@@ -41,7 +41,7 @@
           placeholder="Escribe tu mensaje aquí, minimo 5 caracteres..."></textarea>
       </div>
 
-      <button type="submit" aria-label="Enviar mensaje">Enviar</button>
+      <button type="submit" aria-label="Enviar mensaje" [disabled]="form.invalid">Enviar</button>
     </form>
   </div>
 </section>
