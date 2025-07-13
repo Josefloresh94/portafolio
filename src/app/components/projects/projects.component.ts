@@ -75,6 +75,20 @@ export class ProjectsComponent {
         alt: 'Firebase CRUD - Vista de detalles',
       },
     ],
+    'book-store': [
+      {
+        src: 'assets/images/Projects/book-store/book-store-1.png',
+        alt: 'Book Store - Hero',
+      },
+      {
+        src: 'assets/images/Projects/book-store/book-store-2.png',
+        alt: 'Book Store - Grid de libros por categoría',
+      },
+      {
+        src: 'assets/images/Projects/book-store/book-store-3.png',
+        alt: 'Book Store - Detalle del libro',
+      },
+    ],
   };
 
   // Método para obtener las imágenes según el proyecto
